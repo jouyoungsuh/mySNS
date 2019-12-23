@@ -1,0 +1,26 @@
+extends layout
+
+block content
+    |!{topUIstatus}
+    ul
+        each element in list
+            -var url = `<li><a href=/content/${element.id}>${element.title}</a></li>`;
+            |!{url}
+    <br />
+    script.
+        if('#{msg}'.length > 0) {
+            alert('#{msg}');
+        }
+    div(style='margin: 30px 50px')
+        h2(style='margin: 30px 50px') #{title}
+        form(action='/auth/register_process', method='post')
+            p
+                input(style='margin: 1px 50px', type='text', name='email', placeholder='email', value='')
+            p
+                input(style='margin: 1px 50px', type='password', name='password1', placeholder='password', value='')
+            p
+                input(style='margin: 1px 50px', type='password', name='password2', placeholder='password', value='')
+            p
+                input(style='margin: 1px 50px', type='text', name='nickname', placeholder='nickname', value='')
+            p
+                input(style='margin: 1px 50px', type='submit', value='register')

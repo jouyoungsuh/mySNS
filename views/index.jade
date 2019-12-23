@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  |!{topUIstatus}
+  ul
+    each element in list
+      -var url = `<li><a href=/content/${element.id}>${element.title}</a></li>`;
+      |!{url}
+  <br />
+  script.
+    if('#{msg}'.length > 0) {
+        alert('#{msg}');
+    }
+  div(style='display: inline;')
+    div(style='float: left')
+      form(action='/content/create', method='get')
+        input(type='submit', value='Create')
+  <br />
+  h2(style='margin: 30px 50px') #{title}
+  p(style='margin: 10px 50px') #{description}
+  img(src='/images/hello.jpg' style='margin: 30px 50px; width:300px; display:block; margin-top:10px;')

@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    |!{topUIstatus}
+    ul
+        each element in list
+            -var url = `<li><a href=/content/${element.id}>${element.title}</a></li>`;
+            |!{url}
+    <br />
+    form(action='/content/create_process', method='post')
+        p
+            input(style = 'margin: 30px 50px', type='text', name='title', placeholder='title')
+        p
+            textarea(style = 'margin: 10px 50px', name='description', placeholder='description')
+        p
+            input(style = 'margin: 10px 50px', type='submit')

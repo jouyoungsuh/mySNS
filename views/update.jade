@@ -1,0 +1,26 @@
+extends layout
+
+block content
+    |!{topUIstatus}
+    ul
+        each element in list
+            -var url = `<li><a href=/content/${element.id}>${element.title}</a></li>`;
+            |!{url}
+    <br />
+    div(style='display: inline;')
+        div(style='float: left')
+            form(action='/content/create', method='get')
+                input(type='submit', value='Create')
+        div(style='float: left')
+            form(action='/content/update/' + contentid, method='get')
+                input(type='submit', value='Update')
+    <br />
+    form(action='/content/update_process', method='post')
+        p
+            input(type='hidden', name='id', value='#{contentid}')
+        p
+            input(style = 'margin: 30px 50px', type='text', name='title', placeholder='title', value='#{title}')
+        p
+            textarea(style = 'margin: 10px 50px', name='description', placeholder='description') #{description}
+        p
+            input(style = 'margin: 10px 50px', type='submit')

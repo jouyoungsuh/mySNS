@@ -1,0 +1,30 @@
+extends layout
+
+block content
+    |!{topUIstatus}
+    ul
+        each element in list
+            -var url = `<li><a href=/content/${element.id}>${element.title}</a></li>`;
+            |!{url}
+    <br />
+    script.
+        if('#{msg}'.length > 0) {
+            alert('#{msg}');
+        }
+    div(style='display: inline;')
+        div(style='float: left')
+            form(action='/content/create', method='get')
+                input(type='submit', value='Create')      
+        div(style='float: left')
+            form(action='/content/update/' + content_id, method='get')
+                input(type='submit', value='Update')
+        div(style='float: left')
+            form(action='/content/delete_process', method='post')
+                input(type='hidden', name='id', value='#{content_id}')         
+                input(type='submit', value='Delete')
+    <br />
+    h2(style='margin: 30px 50px') #{title}
+    p(style='margin: 10px 50px') #{description}
+    p(style='text-align: right') Created by: #{nickname}
+    p(style='text-align: right') Created Date: #{createdDate}
+
